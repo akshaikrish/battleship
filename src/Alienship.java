@@ -4,6 +4,7 @@ public class Alienship {
     private int col = -1;
     private int length;
     private int direction;
+    private String[][] clickGrid;
 
     // Direction Constants
     public static final int UNSET = -1;
@@ -18,6 +19,11 @@ public class Alienship {
         this.row = location[1];
         this.col = location[2];
         this.direction = location[0];
+
+//        for (int i=0;i<64;i++)
+//            for (int j=0;j<2;j++){
+//                this.clickGrid[i][j]= "-";
+//            }
     }
     public void displaylocation(){
         System.out.println("Coordinates of the ship are : ");
@@ -52,11 +58,18 @@ public class Alienship {
     }
 
     // Set the location of the ship
-    public void setLocation(int row, int col)
-    {
-        this.row = row;
-        this.col = col;
-    }
+//    public void setLocation()
+//    {
+//        if(direction==0){
+//            int i=0;
+//            for(int j=0;j<3;j++)
+//                clickGrid[row][col+i]="X ";
+//        }else {
+//            int i=0;
+//            for(int j=0;j<3;j++)
+//                clickGrid[row+i][col]="X ";
+//        }
+//    }
 
     // Set the direction of the ship
     public void setDirection(int direction)

@@ -6,6 +6,7 @@ public class AlienshipGame {
     public static int numCols = 8;
     public static int playerShips;
     public static String[][] grid = new String[numRows][numCols];
+    public static String[][] proxygrid = new String[numRows][numCols];
     public static int[][] missedGuesses = new int[numRows][numCols];
     private static final int[] SHIP_LENGTHS = {3, 3, 3};
     private static final int NUM_OF_SHIPS = 3;
@@ -42,6 +43,7 @@ public class AlienshipGame {
             for (int j = 0; j < grid[i].length; j++) {
                 String alpha = getCharForNumber(i);
                 grid[i][j] = "- ";
+                proxygrid[i][j]= "- ";
                 if (j == 0)
                     System.out.print(i + "|" + grid[i][j]);
 //
@@ -69,31 +71,50 @@ public class AlienshipGame {
         Alienship[] ships = new Alienship[NUM_OF_SHIPS];
         for (int i = 0; i < NUM_OF_SHIPS; i++)
         {
-            int[] location = getdirection();
+            location = getdirection();
             Alienship tempShip = new Alienship(SHIP_LENGTHS[i], location);
             ships[i] = tempShip;
+            System.out.println();
             System.out.println("Ship"+(i+1)+" has been deployed");
-            System.out.println(location[0]);
+//            System.out.println(location[0]);
             tempShip.displaylocation();
-            showships(location);
-        }printmap();
+            updateproxygrid(location);
+        }
+        System.out.println();
+        printmap();
 
     }
-    public static void showships(int[] loc) {
+    public static void updateproxygrid(int[] loc) {
         int row = loc[1];
         int col = loc[2];
         int dir = loc[0];
-
+//        System.out.println("This is proxy grid");
         if(dir==0){
-            grid[row][col] = "O ";
-            grid[row][col+1]= "O ";
-            grid[row][col+2]= "O ";
+            proxygrid[row][col] = "X ";
+            proxygrid[row][col+1]= "X ";
+            proxygrid[row][col+2]= "X ";
         }else{
-            grid[row][col] = "O ";
-            grid[row+1][col]= "O ";
-            grid[row+2][col]= "O ";
+            proxygrid[row][col] = "X ";
+            proxygrid[row+1][col]= "X ";
+            proxygrid[row+2][col]= "X ";
         }
     }
+
+//    public static void setLocation(int[] loc)
+//    {
+//        int dir = loc[0];
+//        int row = loc[1];
+//        int col = loc[2];
+//        if(dir==0){
+//            int i=0;
+//            for(int j=0;j<3;j++)
+//                proxygrid[row][col+i]="X";
+//        }else {
+//            int i=0;
+//            for(int j=0;j<3;j++)
+//                proxygrid[row+i][col]="X";
+//        }
+//    }
 
     private static String getCharForNumber(int i) {
         return i >= 0 && i < 27 ? String.valueOf((char)(i + 65)) : null;
@@ -101,7 +122,13 @@ public class AlienshipGame {
 
     public static void takeguess(char rowalpha, int col) {
         int row = rowalpha - 'A';
-        grid[row][col] = "O ";
+        if (proxygrid[row][col]=="X "){
+            System.out.println("Its Hit!!");
+            grid[row][col]="X ";
+        }else{
+            System.out.println("Its a Miss!!");
+            grid[row][col]="O ";
+        }
     }
 
     public static void printmap(){
@@ -134,19 +161,25 @@ public class AlienshipGame {
             return setvertical();
     }
 
-    public static int getrandom(){
+    public static int getrandom6(){
         Random rand = new Random();
         int r = rand.nextInt(60);
         int randomnum = r%6;
+        return randomnum;
+    }
+    public static int getrandom8(){
+        Random rand = new Random();
+        int r = rand.nextInt(80);
+        int randomnum = r%8;
         return randomnum;
     }
 
     public static int[] sethorizontal(){
         int temprow, tempcol;
         do {
-            temprow= getrandom();
-            tempcol= getrandom();
-        }while ((grid[temprow][tempcol]!="- ")||(grid[temprow][tempcol+1]!="- ")||(grid[temprow][tempcol+2]!="- "));
+            temprow= getrandom8();
+            tempcol= getrandom6();
+        }while ((proxygrid[temprow][tempcol]!="- ")||(proxygrid[temprow][tempcol+1]!="- ")||(proxygrid[temprow][tempcol+2]!="- "));
         int[] check= {0,temprow,tempcol};
         return check;
     }
@@ -154,9 +187,9 @@ public class AlienshipGame {
     public static int[] setvertical(){
         int temprow, tempcol;
         do {
-            temprow= getrandom();
-            tempcol= getrandom();
-        }while ((grid[temprow][tempcol]!="- ")||(grid[temprow+1][tempcol]!="- ")||(grid[temprow+2][tempcol]!="- "));
+            temprow= getrandom6();
+            tempcol= getrandom8();
+        }while ((proxygrid[temprow][tempcol]!="- ")||(proxygrid[temprow+1][tempcol]!="- ")||(proxygrid[temprow+2][tempcol]!="- "));
         int[] check= {1,temprow,tempcol};
         return check;
     }
