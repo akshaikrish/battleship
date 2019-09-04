@@ -5,6 +5,7 @@ public class Alienship {
     private int length;
     private int direction;
     private String[][] clickGrid;
+    private int shipCellLeft=3;
 
     // Direction Constants
     public static final int UNSET = -1;
@@ -56,6 +57,18 @@ public class Alienship {
         else
             return true;
     }
+
+    public int isKilled(){
+        shipCellLeft--;
+        return shipCellLeft;
+    }
+//    public boolean isClicked(int r, int c) {
+//        for (int i=0;i<64;i++){
+//            for (int j=0;j<2;j++){
+//                if (clickGrid[i][j])
+//            }
+//        }
+//    }
 
     // Set the location of the ship
 //    public void setLocation()

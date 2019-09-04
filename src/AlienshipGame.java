@@ -19,18 +19,37 @@ public class AlienshipGame {
         Scanner input  = new Scanner(System.in);
         createMap();
         deployships();
+        Alienship[] ships = new Alienship[NUM_OF_SHIPS];
+        for (int i = 0; i < NUM_OF_SHIPS; i++)
+        {
+            location = getdirection();
+            Alienship tempShip = new Alienship(SHIP_LENGTHS[i], location);
+            ships[i] = tempShip;
+            System.out.println();
+            System.out.println("Ship"+(i+1)+" has been deployed");
+//            System.out.println(location[0]);
+            tempShip.displaylocation();
+            updateproxygrid(location);
+        }
+        System.out.println();
+        printmap();
         while(SHIPS_KILLED <3){
             System.out.println();
             System.out.println("Enter your guess: ");
             String playerguess = input.nextLine();
             char rowalpha = playerguess.charAt(0);
             char colalpha = playerguess.charAt(1);
+            int row = rowalpha - 'A';
             int colguess = colalpha - '0';
 //            System.out.println(rowalpha+" , "+colguess);
-            takeguess(rowalpha,colguess);
+            boolean ishit = takeguess(row,colguess);
+            if (ishit){
+
+            }
+            System.out.println("Number of Guesses : "+(++GUESS_COUNT));
             System.out.println();
             printmap();
-            System.out.println("Number of Guesses : "+(++GUESS_COUNT));
+
 
 
         }
@@ -45,7 +64,7 @@ public class AlienshipGame {
                 grid[i][j] = "- ";
                 proxygrid[i][j]= "- ";
                 if (j == 0)
-                    System.out.print(i + "|" + grid[i][j]);
+                    System.out.print(alpha + "|" + grid[i][j]);
 //
                 else
                     System.out.print(grid[i][j]);
@@ -68,20 +87,20 @@ public class AlienshipGame {
 
 
 
-        Alienship[] ships = new Alienship[NUM_OF_SHIPS];
-        for (int i = 0; i < NUM_OF_SHIPS; i++)
-        {
-            location = getdirection();
-            Alienship tempShip = new Alienship(SHIP_LENGTHS[i], location);
-            ships[i] = tempShip;
-            System.out.println();
-            System.out.println("Ship"+(i+1)+" has been deployed");
-//            System.out.println(location[0]);
-            tempShip.displaylocation();
-            updateproxygrid(location);
-        }
-        System.out.println();
-        printmap();
+//        Alienship[] ships = new Alienship[NUM_OF_SHIPS];
+//        for (int i = 0; i < NUM_OF_SHIPS; i++)
+//        {
+//            location = getdirection();
+//            Alienship tempShip = new Alienship(SHIP_LENGTHS[i], location);
+//            ships[i] = tempShip;
+//            System.out.println();
+//            System.out.println("Ship"+(i+1)+" has been deployed");
+////            System.out.println(location[0]);
+//            tempShip.displaylocation();
+//            updateproxygrid(location);
+//        }
+//        System.out.println();
+//        printmap();
 
     }
     public static void updateproxygrid(int[] loc) {
@@ -120,16 +139,30 @@ public class AlienshipGame {
         return i >= 0 && i < 27 ? String.valueOf((char)(i + 65)) : null;
     }
 
-    public static void takeguess(char rowalpha, int col) {
-        int row = rowalpha - 'A';
+
+
+    public static boolean takeguess(int row, int col) {
+
         if (proxygrid[row][col]=="X "){
             System.out.println("Its Hit!!");
             grid[row][col]="X ";
-        }else{
+            proxygrid[row][col]="C ";
+            return true;
+        }
+        else if (proxygrid[row][col]=="C "){
+            System.out.println("Cell already Clicked!!");
+            GUESS_COUNT--;
+            return false;
+        }
+        else{
             System.out.println("Its a Miss!!");
             grid[row][col]="O ";
+            proxygrid[row][col]="C ";
+            return false;
         }
     }
+
+
 
     public static void printmap(){
         for(int i = 0; i < grid.length; i++) {
