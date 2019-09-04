@@ -4,8 +4,10 @@ public class Alienship {
     private int col = -1;
     private int length;
     private int direction;
-    private String[][] clickGrid;
+    private String[][] coordinates;
     private int shipCellLeft=3;
+    private int r1,r2,r3,c1,c2,c3;
+   private boolean killed = false;
 
     // Direction Constants
     public static final int UNSET = -1;
@@ -21,14 +23,10 @@ public class Alienship {
         this.col = location[2];
         this.direction = location[0];
 
-//        for (int i=0;i<64;i++)
-//            for (int j=0;j<2;j++){
-//                this.clickGrid[i][j]= "-";
-//            }
     }
     public void displaylocation(){
         System.out.println("Coordinates of the ship are : ");
-        if(direction==0){
+        if(direction==HORIZONTAL){
             System.out.println("("+row+","+col+")");
             System.out.println("("+row+","+(col+1)+")");
             System.out.println("("+row+","+(col+2)+")");
@@ -58,9 +56,39 @@ public class Alienship {
             return true;
     }
 
-    public int isKilled(){
-        shipCellLeft--;
-        return shipCellLeft;
+    public boolean isKilled(){
+        if (!killed){
+            if (shipCellLeft==0){
+                killed = true;
+                return killed;
+            }else
+                return false;
+        }else
+            return false;
+    }
+
+    public boolean ifHit(int r, int c){
+        if((r==r1 && c==c1)||(r==r2 && c==c2)||(r==r3 && c==c3)){
+            shipCellLeft--;
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public void setLocation(){
+
+        if (direction==HORIZONTAL){
+            r1=r2=r3=row;
+            c1=col;
+            c2=col+1;
+            c3=col+2;
+        }else {
+            c1=c2=c3=col;
+            r1=row;
+            r2=row+1;
+            r3=row+2;
+        }
     }
 //    public boolean isClicked(int r, int c) {
 //        for (int i=0;i<64;i++){

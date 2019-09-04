@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class AlienshipGame {
 
@@ -9,50 +10,64 @@ public class AlienshipGame {
     public static String[][] proxygrid = new String[numRows][numCols];
     public static int[][] missedGuesses = new int[numRows][numCols];
     private static final int[] SHIP_LENGTHS = {3, 3, 3};
-    private static final int NUM_OF_SHIPS = 3;
+    private static int NUM_OF_SHIPS = 3;
     private static int SHIPS_KILLED = 0;
     private static int GUESS_COUNT = 0;
     private static int[] location;
+    private static String status;
 
 
     public static void main(String[] args) {
         Scanner input  = new Scanner(System.in);
         createMap();
         deployships();
+
         Alienship[] ships = new Alienship[NUM_OF_SHIPS];
         for (int i = 0; i < NUM_OF_SHIPS; i++)
         {
             location = getdirection();
             Alienship tempShip = new Alienship(SHIP_LENGTHS[i], location);
             ships[i] = tempShip;
+            ships[i].setLocation();
             System.out.println();
             System.out.println("Ship"+(i+1)+" has been deployed");
 //            System.out.println(location[0]);
             tempShip.displaylocation();
             updateproxygrid(location);
         }
+
+
         System.out.println();
         printmap();
         while(SHIPS_KILLED <3){
             System.out.println();
+            System.out.println("Number of ships Killed : "+SHIPS_KILLED);
             System.out.println("Enter your guess: ");
             String playerguess = input.nextLine();
             char rowalpha = playerguess.charAt(0);
             char colalpha = playerguess.charAt(1);
-            int row = rowalpha - 'A';
+            char rowCaps = Character.toUpperCase(rowalpha);
+            int row = rowCaps - 'A';
             int colguess = colalpha - '0';
 //            System.out.println(rowalpha+" , "+colguess);
-            boolean ishit = takeguess(row,colguess);
-            if (ishit){
-
+            boolean isHit = takeguess(row,colguess);
+            if (isHit){
+                for (int i=0;i<3;i++){
+                    if(ships[i].ifHit(row, colguess))
+                        if (ships[i].isKilled()){
+                            SHIPS_KILLED++;
+                            status= "Its a kill!!";
+                        }
+                }
             }
+            System.out.println(status);
             System.out.println("Number of Guesses : "+(++GUESS_COUNT));
             System.out.println();
             printmap();
 
-
-
         }
+        System.out.println("Game Over!");
+
     }
 
     public static void createMap(){
@@ -144,18 +159,18 @@ public class AlienshipGame {
     public static boolean takeguess(int row, int col) {
 
         if (proxygrid[row][col]=="X "){
-            System.out.println("Its Hit!!");
+            status="Its a hit";
             grid[row][col]="X ";
             proxygrid[row][col]="C ";
             return true;
         }
         else if (proxygrid[row][col]=="C "){
-            System.out.println("Cell already Clicked!!");
+            status = "Its already clicked";
             GUESS_COUNT--;
             return false;
         }
         else{
-            System.out.println("Its a Miss!!");
+            status= "Its a miss";
             grid[row][col]="O ";
             proxygrid[row][col]="C ";
             return false;
