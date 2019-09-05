@@ -11,10 +11,10 @@ public class AlienshipGame {
     public static int[][] missedGuesses = new int[numRows][numCols];
     private static final int[] SHIP_LENGTHS = {3, 3, 3};
     public static int NUM_OF_SHIPS = 3;
-    private static int SHIPS_KILLED = 0;
-    private static int GUESS_COUNT = 0;
+    public static int SHIPS_KILLED = 0;
+    public static int GUESS_COUNT = 0;
 //    private static int[] location;
-    private static String status;
+    public static String status;
 
 
     public static void main(String[] args) {
