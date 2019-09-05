@@ -90,35 +90,6 @@ public class Alienship {
             r3=row+2;
         }
     }
-//    public boolean isClicked(int r, int c) {
-//        for (int i=0;i<64;i++){
-//            for (int j=0;j<2;j++){
-//                if (clickGrid[i][j])
-//            }
-//        }
-//    }
-
-    // Set the location of the ship
-//    public void setLocation()
-//    {
-//        if(direction==0){
-//            int i=0;
-//            for(int j=0;j<3;j++)
-//                clickGrid[row][col+i]="X ";
-//        }else {
-//            int i=0;
-//            for(int j=0;j<3;j++)
-//                clickGrid[row+i][col]="X ";
-//        }
-//    }
-
-    // Set the direction of the ship
-    public void setDirection(int direction)
-    {
-        if (direction != UNSET && direction != HORIZONTAL && direction != VERTICAL)
-            throw new IllegalArgumentException("Invalid direction. It must be -1, 0, or 1");
-        this.direction = direction;
-    }
 
     // Getter for the row value
     public int getRow()
@@ -144,14 +115,4 @@ public class Alienship {
         return direction;
     }
 
-    // Helper method to get a string value from the direction
-//    private String directionToString()
-//    {
-//        if (direction == UNSET)
-//            return "UNSET";
-//        else if (direction == HORIZONTAL)
-//            return "HORIZONTAL";
-//        else
-//            return "VERTICAL";
-//    }
 }

@@ -52,7 +52,6 @@ public class AlienshipGame {
 
 
     public static void deployships(){
-        Scanner input  = new Scanner(System.in);
         if (NUM_OF_SHIPS != 3) // Num of ships must be 3
         {
             throw new IllegalArgumentException("ERROR! Num of ships must be 3");
@@ -66,14 +65,21 @@ public class AlienshipGame {
             ships[i].setLocation();
             System.out.println();
             System.out.println("Ship"+(i+1)+" has been deployed");
-//            System.out.println(location[0]);
             tempShip.displaylocation();
             updateproxygrid(location);
         }
 
-
         System.out.println();
         printmap();
+        startgame(ships);
+        System.out.println("Game Over!");
+
+    }
+
+
+    public static void startgame( Alienship[] ships){
+
+        Scanner input  = new Scanner(System.in);
         while(SHIPS_KILLED <3){
             System.out.println();
 //            System.out.println("Number of ships Killed : "+SHIPS_KILLED);
@@ -82,14 +88,14 @@ public class AlienshipGame {
             char rowalpha = playerguess.charAt(0);
             char colalpha = playerguess.charAt(1);
             char rowCaps = Character.toUpperCase(rowalpha);
-            int row = rowCaps - 'A';
+            int rowguess = rowCaps - 'A';
             int colguess = colalpha - '0';
 //            System.out.println(rowalpha+" , "+colguess);
-            if (colguess<8) {
-                boolean isHit = takeguess(row, colguess);
+            if (colguess<8 && rowguess<8) {
+                boolean isHit = takeguess(rowguess, colguess);
                 if (isHit) {
                     for (int i = 0; i < 3; i++) {
-                        if (ships[i].ifHit(row, colguess))
+                        if (ships[i].ifHit(rowguess, colguess))
                             if (ships[i].isKilled()) {
                                 SHIPS_KILLED++;
                                 status = "Its a kill! You killed " + SHIPS_KILLED + " out of 3 Alienships !";
@@ -103,9 +109,8 @@ public class AlienshipGame {
             }else
                 System.out.println("Enter valid coordinates !");
         }
-        System.out.println("Game Over!");
-
     }
+
     public static void updateproxygrid(int[] loc) {
         int row = loc[1];
         int col = loc[2];
