@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbedf819-f2de-4d01-8700-fb530582822e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/AlienshipGameTester.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AlienshipGame/Alienship.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlienshipGame/Alienship.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AlienshipGame/AlienshipGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AlienshipGame/AlienshipGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AlienshipGame/Grid.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Alienship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alienship.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AlienshipGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlienshipGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Grid.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,29 +20,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Alienship.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="61" column="30" lean-forward="true" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
+            <state relative-caret-position="374">
+              <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AlienshipGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-34">
-              <caret line="43" column="71" selection-start-line="43" selection-start-column="71" selection-end-line="43" selection-end-column="71" />
+            <state relative-caret-position="340">
+              <caret line="76" column="31" lean-forward="true" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Grid.java">
+        <entry file="file://$PROJECT_DIR$/src/AlienshipGameTester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="187">
+              <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -60,6 +65,7 @@
         <option value="$PROJECT_DIR$/src/Grid.java" />
         <option value="$PROJECT_DIR$/src/main.java" />
         <option value="$PROJECT_DIR$/src/Alienship.java" />
+        <option value="$PROJECT_DIR$/src/AlienshipGameTester.java" />
         <option value="$PROJECT_DIR$/src/AlienshipGame.java" />
       </list>
     </option>
@@ -96,7 +102,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567622150149" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567665271948" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -113,9 +119,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.AlienshipGame">
+  <component name="RunManager" selected="Application.AlienshipGameTester">
     <configuration name="AlienshipGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AlienshipGame" />
+      <module name="AlienshipGame" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AlienshipGameTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AlienshipGameTester" />
       <module name="AlienshipGame" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -134,9 +147,11 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.AlienshipGame" />
+      <item itemvalue="Application.AlienshipGameTester" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AlienshipGameTester" />
         <item itemvalue="Application.AlienshipGame" />
         <item itemvalue="Application.Main" />
       </list>
@@ -184,7 +199,7 @@
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
       <window_info anchor="right" x="40" y="256" width="1200" height="167" id="Messages" order="8" weight="0.32793522" />
-      <window_info anchor="right" id="Run" order="9" weight="0.32388663" />
+      <window_info active="true" anchor="right" id="Run" order="9" visible="true" weight="0.32388663" />
     </layout>
   </component>
   <component name="XDebuggerManager">
@@ -213,17 +228,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AlienshipGame.java">
+    <entry file="file://$PROJECT_DIR$/src/AlienshipGameTester.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="43" column="71" selection-start-line="43" selection-start-column="71" selection-end-line="43" selection-end-column="71" />
+        <state relative-caret-position="187">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Alienship.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="61" column="30" lean-forward="true" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
+        <state relative-caret-position="374">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AlienshipGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="76" column="31" lean-forward="true" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="31" />
         </state>
       </provider>
     </entry>

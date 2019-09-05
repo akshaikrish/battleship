@@ -27,14 +27,14 @@ public class Alienship {
     public void displaylocation(){
         System.out.println("Coordinates of the ship are : ");
         if(direction==HORIZONTAL){
-            System.out.println("("+row+","+col+")");
-            System.out.println("("+row+","+(col+1)+")");
-            System.out.println("("+row+","+(col+2)+")");
+            System.out.println("("+(char)(row+65)+","+col+")");
+            System.out.println("("+(char)(row+65)+","+(col+1)+")");
+            System.out.println("("+(char)(row+65)+","+(col+2)+")");
         }
         else{
-            System.out.println("("+row+","+col+")");
-            System.out.println("("+(row+1)+","+col+")");
-            System.out.println("("+(row+2)+","+col+")");
+            System.out.println("("+(char)(65+row)+","+col+")");
+            System.out.println("("+(char)(65+(row+1))+","+col+")");
+            System.out.println("("+(char)(65+(row+2))+","+col+")");
         }
     }
 
