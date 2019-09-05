@@ -10,10 +10,10 @@ public class AlienshipGame {
     public static String[][] proxygrid = new String[numRows][numCols];
     public static int[][] missedGuesses = new int[numRows][numCols];
     private static final int[] SHIP_LENGTHS = {3, 3, 3};
-    private static int NUM_OF_SHIPS = 3;
+    public static int NUM_OF_SHIPS = 3;
     private static int SHIPS_KILLED = 0;
     private static int GUESS_COUNT = 0;
-    private static int[] location;
+//    private static int[] location;
     private static String status;
 
 
@@ -59,14 +59,15 @@ public class AlienshipGame {
         Alienship[] ships = new Alienship[NUM_OF_SHIPS];
         for (int i = 0; i < NUM_OF_SHIPS; i++)
         {
-            location = getdirection();
-            Alienship tempShip = new Alienship(SHIP_LENGTHS[i], location);
-            ships[i] = tempShip;
-            ships[i].setLocation();
-            System.out.println();
-            System.out.println("Ship"+(i+1)+" has been deployed");
-            tempShip.displaylocation();
-            updateproxygrid(location);
+            int[] location = getdirection();
+            generateShip(ships, i, location);
+//            Alienship tempShip = new Alienship(SHIP_LENGTHS[i], location);
+//            ships[i] = tempShip;
+//            ships[i].setLocation();
+//            System.out.println();
+//            System.out.println("Ship"+(i+1)+" has been deployed");
+//            tempShip.displaylocation();
+//            updateproxygrid(location);
         }
 
         System.out.println();
@@ -76,8 +77,17 @@ public class AlienshipGame {
 
     }
 
+    public static void generateShip(Alienship[] ships, int i, int[] location) {
+        Alienship tempShip = new Alienship(SHIP_LENGTHS[i], location);
+        ships[i] = tempShip;
+        ships[i].setLocation();
+        System.out.println();
+        System.out.println("Ship"+(i+1)+" has been deployed");
+        tempShip.displaylocation();
+        updateproxygrid(location);
+    }
 
-    public static void startgame( Alienship[] ships){
+    public static void startgame(Alienship[] ships){
 
         Scanner input  = new Scanner(System.in);
         while(SHIPS_KILLED <3){
@@ -85,6 +95,7 @@ public class AlienshipGame {
 //            System.out.println("Number of ships Killed : "+SHIPS_KILLED);
             System.out.println("Enter your guess: ");
             String playerguess = input.nextLine();
+            if (playerguess.length()>1){
             char rowalpha = playerguess.charAt(0);
             char colalpha = playerguess.charAt(1);
             char rowCaps = Character.toUpperCase(rowalpha);
@@ -107,6 +118,8 @@ public class AlienshipGame {
                 System.out.println();
                 printmap();
             }else
+                System.out.println("Enter valid coordinates !");
+        }else
                 System.out.println("Enter valid coordinates !");
         }
     }
