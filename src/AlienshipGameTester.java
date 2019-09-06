@@ -171,12 +171,37 @@ public class AlienshipGameTester{
 
     public static void guessTester(String guess, String expresult, String[][] shiploc){
         String lower_expresult = expresult.toLowerCase();
-        if ((statusCheck==0 && lower_expresult.equals("miss"))||
-                (statusCheck==1 && lower_expresult.equals("hit"))||
-                (statusCheck==2 && lower_expresult.equals("kill"))){
-            System.out.println("Test case passed !");
+        char exp_result = lower_expresult.charAt(0);
+        char actualResult;
+        if (guess.length()>1){
+            char rowalpha = guess.charAt(0);
+            char colalpha = guess.charAt(1);
+            char rowCaps = Character.toUpperCase(rowalpha);
+            int rowtest = rowCaps - 'A';
+            int coltest = colalpha - '0';
+//            System.out.println(rowalpha+" , "+colguess);
+            if (coltest<AlienshipGame.numCols && rowtest<AlienshipGame.numRows){
+                if (shiploc[rowtest][coltest]=="X "){
+                    actualResult = 'h';
+                    shiploc[rowtest][coltest] = "H ";
+                }
+                else if ((shiploc[rowtest][coltest]=="C " ) || (shiploc[rowtest][coltest]=="H ")){
+                    actualResult = 'c';
+                }
+                else {
+                    actualResult = 'm';
+                    shiploc[rowtest][coltest] = "C ";
+                }
+
+                if (actualResult == exp_result){
+                    System.out.println("Test case passed !");
+                }else
+                    System.out.println("Test case failed !");
+            }else
+                System.out.println("Enter valid codes !");
         }else
-            System.out.println("Test case failed !");
+            System.out.println("Enter valid codes !");
+
 
     }
 

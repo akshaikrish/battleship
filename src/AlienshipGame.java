@@ -102,7 +102,7 @@ public class AlienshipGame {
             int rowguess = rowCaps - 'A';
             int colguess = colalpha - '0';
 //            System.out.println(rowalpha+" , "+colguess);
-            if (colguess<8 && rowguess<8) {
+            if (colguess<numCols && rowguess<numRows) {
                 boolean isHit = takeguess(rowguess, colguess);
                 if (isHit) {
                     for (int i = 0; i < 3; i++) {
