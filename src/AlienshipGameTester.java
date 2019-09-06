@@ -9,7 +9,6 @@ public class AlienshipGameTester{
     private static char direction;
     private static int rowguess;
     private static int colguess;
-    private static int statusCheck;
 
     static Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
@@ -38,15 +37,12 @@ public class AlienshipGameTester{
             char rowCaps = Character.toUpperCase(rowalpha);
             rowguess = rowCaps - 'A';
             colguess = colalpha - '0';
-            if (colguess < 8 && rowguess < 8){
-                System.out.println("Input accepted");
+            if (colguess < 8 && rowguess>=0 && rowguess < 8){
                  userguess = tempguess;
                  return  true;}
             else{
-                System.out.println("Size exceeding");
                 return false;}
         }else{
-            System.out.println("Enter valid coordinates !");
             return false;}
     }
 
@@ -55,7 +51,7 @@ public class AlienshipGameTester{
     public static void determineDirection(int i){
         do {
             System.out.println();
-            System.out.println("Choose the orientation of ship" + (i + 1) + " (H for Horizontal and V for Vertical)");
+            System.out.println("Choose the orientation of ship" + (i + 1) + "\n(H for Horizontal and V for Vertical)");
             String tempdir = input.nextLine();
             direction = tempdir.charAt(0);
             direction = Character.toUpperCase(direction);
@@ -128,7 +124,6 @@ public class AlienshipGameTester{
 
     public static void testGame(Alienship[] ships){
         while(AlienshipGame.SHIPS_KILLED <3){
-            statusCheck = 0;
             System.out.println();
 //            System.out.println("Number of ships Killed : "+SHIPS_KILLED);
             System.out.println("Enter User guess: ");
@@ -145,19 +140,19 @@ public class AlienshipGameTester{
                     String expectedresult = input.nextLine();
                     boolean isHit = AlienshipGame.takeguess(rowguess, colguess);
                     if (isHit) {
-                        statusCheck = 1;
                         for (int i = 0; i < 3; i++) {
                             if (ships[i].ifHit(rowguess, colguess))
                                 if (ships[i].isKilled()) {
                                     AlienshipGame.SHIPS_KILLED++;
                                     AlienshipGame.status = "Its a kill! You killed " + AlienshipGame.SHIPS_KILLED + " out of 3 Alienships !";
-                                    statusCheck = 2;
                                 }
                         }
                     }
                     System.out.println(AlienshipGame.status);
                     guessTester(playerguess, expectedresult, gridmap);
                     System.out.println("Number of Guesses : " + (++AlienshipGame.GUESS_COUNT));
+                    System.out.println();
+                    System.out.println("H - already hit \nC - already missed");
                     System.out.println();
                     AlienshipGame.printmap();
                 }else

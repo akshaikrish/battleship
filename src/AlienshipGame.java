@@ -73,6 +73,7 @@ public class AlienshipGame {
         System.out.println();
         printmap();
         startgame(ships);
+        System.out.println("You took a total of "+GUESS_COUNT+" guesses !");
         System.out.println("Game Over!");
 
     }
@@ -102,7 +103,7 @@ public class AlienshipGame {
             int rowguess = rowCaps - 'A';
             int colguess = colalpha - '0';
 //            System.out.println(rowalpha+" , "+colguess);
-            if (colguess<numCols && rowguess<numRows) {
+            if (colguess<numCols && rowguess>=0 && rowguess<numRows) {
                 boolean isHit = takeguess(rowguess, colguess);
                 if (isHit) {
                     for (int i = 0; i < 3; i++) {
@@ -113,8 +114,9 @@ public class AlienshipGame {
                             }
                     }
                 }
+                ++GUESS_COUNT;
                 System.out.println(status);
-                System.out.println("Number of Guesses : " + (++GUESS_COUNT));
+//                System.out.println("Number of Guesses : " + (++GUESS_COUNT));
                 System.out.println();
                 printmap();
             }else
@@ -150,18 +152,18 @@ public class AlienshipGame {
     public static boolean takeguess(int row, int col) {
 
         if (proxygrid[row][col]=="X "){
-            status="Its a hit";
+            status="Its a Hit!";
             grid[row][col]="X ";
             proxygrid[row][col]="C ";
             return true;
         }
         else if (proxygrid[row][col]=="C "){
-            status = "Its already clicked";
+            status = "Its already Clicked!";
             GUESS_COUNT--;
             return false;
         }
         else{
-            status= "Its a miss";
+            status= "Its a Miss!";
             grid[row][col]="O ";
             proxygrid[row][col]="C ";
             return false;
